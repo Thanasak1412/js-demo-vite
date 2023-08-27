@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    tools {
+        // Reference the Node.js installation configured in Jenkins
+        nodejs "NodeJS-18.17.1"
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -10,10 +15,8 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                echo 'executing npm...'
-                nodejs(nodeJSInstallationName: 'NodeJS-18.17.1') {
-                    sh 'npm install -g vite'
-                }
+                // Install 'vite' globally
+                sh 'npm install -g vite'
             }
         }
 
@@ -24,6 +27,11 @@ pipeline {
             }
         }
 
-        // Add more stages as needed
+        stage('Test') {
+            steps {
+                // Execute Test stage
+                echo 'execute test...'
+            }
+        }
     }
 }
