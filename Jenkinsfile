@@ -13,13 +13,6 @@ pipeline {
             }
         }
 
-        stage('Install Dependencies') {
-            steps {
-                // Install 'vite' globally
-                sh 'npm install -g vite'
-            }
-        }
-
         stage('Build') {
             steps {
                 // Run 'vite build' to build the React application
